@@ -1,0 +1,1396 @@
+<!--
+=======================================================================
+Prompt Builder - Illustration to Figure v1.1.0
+Author: Tennen (@munou_ac)
+
+Unauthorized reproduction or redistribution of this code is strictly prohibited.
+=======================================================================
+-->
+<html lang="en">
+<head><meta content="noindex, nofollow" name="robots"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Prompt Builder - Illustration to Figure</title>
+<style type="text/css">
+    /* Tailwind CSS Preflight (Reset) */
+    *,::before,::after { box-sizing: border-box; border-width: 0; border-style: solid; border-color: #e5e7eb }
+    html { line-height: 1.5; -webkit-text-size-adjust: 100%; -moz-tab-size: 4; tab-size: 4; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+    body { margin: 0; line-height: inherit }
+    hr { height: 0; color: inherit; border-top-width: 1px }
+    h1,h2,h3,h4,h5,h6 { font-size: inherit; font-weight: inherit }
+    a { color: inherit; text-decoration: inherit }
+    b,strong { font-weight: bolder }
+    code,kbd,samp,pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 1em; }
+    small { font-size: 80% }
+    sub,sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline }
+    sub { bottom: -0.25em }
+    sup { top: -0.5em }
+    table { text-indent: 0; border-color: inherit; border-collapse: collapse }
+    button,input,optgroup,select,textarea { font-family: inherit; font-size: 100%; font-weight: inherit; line-height: inherit; color: inherit; margin: 0; padding: 0 }
+    button,select { text-transform: none }
+    button,[type='button'],[type='reset'],[type='submit'] { -webkit-appearance: button; background-color: transparent; background-image: none }
+    :-moz-focusring { outline: auto }
+    :-moz-ui-invalid { box-shadow: none }
+    progress { vertical-align: baseline }
+    ::-webkit-inner-spin-button,::-webkit-outer-spin-button { height: auto }
+    [type='search'] { -webkit-appearance: textfield; outline-offset: -2px }
+    ::-webkit-search-decoration { -webkit-appearance: none }
+    ::-webkit-file-upload-button { -webkit-appearance: button; font: inherit }
+    summary { display: list-item }
+    blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre { margin: 0 }
+    fieldset { margin: 0; padding: 0 }
+    legend { padding: 0 }
+    ol,ul,menu { list-style: none; margin: 0; padding: 0 }
+    textarea { resize: vertical }
+    input::placeholder,textarea::placeholder { opacity: 1; color: #9ca3af }
+    button,[role="button"] { cursor: pointer }
+    :disabled { cursor: default }
+    img,svg,video,canvas,audio,iframe,embed,object { display: block; vertical-align: middle }
+    img,video { max-width: 100%; height: auto }
+    [hidden] { display: none }
+
+    /* Custom and Utility Styles from the page */
+    .checkbox-container { display: flex; align-items: center; margin-bottom: 1rem; }
+    .checkbox-container input[type="checkbox"] { margin-right: 0.5rem; }
+    input:disabled + label { color: #64748b; cursor: not-allowed; }
+    #consent-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 1000; }
+    #consent-overlay.show { display: flex; }
+    .consent-dialog { background-color: #1e293b; padding: 2rem; border-radius: 1rem; border: 1px solid #334155; width: 90%; max-width: 600px; }
+
+    .bg-slate-900 { background-color: #0f172a; }
+    .bg-slate-800 { background-color: #1e293b; }
+    .bg-slate-700 { background-color: #334155; }
+    .bg-slate-600 { background-color: #475569; }
+    .bg-amber-500\/10 { background-color: rgba(245, 158, 11, 0.1); }
+    .bg-blue-600 { background-color: #2563eb; }
+    .hover\:bg-blue-700:hover { background-color: #1d4ed8; }
+    .bg-sky-600 { background-color: #0284c7; }
+    .hover\:bg-sky-700:hover { background-color: #0369a1; }
+    .hover\:bg-slate-500:hover { background-color: #64748b; }
+    .bg-transparent { background-color: transparent; }
+
+    .text-gray-100 { color: #f3f4f6; }
+    .text-blue-400 { color: #60a5fa; }
+    .text-slate-400 { color: #94a3b8; }
+    .text-slate-500 { color: #64748b; }
+    .text-slate-300 { color: #cbd5e1; }
+    .text-amber-200 { color: #fde68a; }
+    .text-white { color: #fff; }
+    .text-emerald-300 { color: #6ee7b7; }
+    .text-red-400 { color: #f87171; }
+    .text-slate-200 { color: #e2e8f0; }
+    .text-amber-400 { color: #fbbf24; }
+    
+    .font-sans { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+    .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+    .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+    .text-xs { font-size: 0.75rem; line-height: 1rem; }
+    .font-bold { font-weight: 700; }
+    .font-semibold { font-weight: 600; }
+    .text-center { text-align: center; }
+    .leading-relaxed { line-height: 1.625; }
+    .tracking-wider { letter-spacing: 0.05em; }
+    
+    .min-h-screen { min-height: 100vh; }
+    .w-full { width: 100%; }
+    .max-w-2xl { max-width: 42rem; }
+    .w-8 { width: 2rem; }
+    .h-8 { height: 2rem; }
+    .w-5 { width: 1.25rem; }
+    .h-5 { height: 1.25rem; }
+    .w-4 { width: 1rem; }
+    .h-4 { height: 1rem; }
+    .h-24 { height: 6rem; }
+    .h-48 { height: 12rem; }
+    .max-h-\[50vh\] { max-height: 50vh; }
+
+    .py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .p-8 { padding: 2rem; }
+    .p-4 { padding: 1rem; }
+    .p-3 { padding: 0.75rem; }
+    .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+    .pr-20 { padding-right: 5rem; }
+    .pr-2 { padding-right: 0.5rem; }
+    .pl-6 { padding-left: 1.5rem; }
+    .pl-2 { padding-left: 0.5rem; }
+    .pt-4 { padding-top: 1rem; }
+
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-3 { margin-bottom: 0.75rem; }
+    .mb-2 { margin-bottom: 0.5rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mt-1 { margin-top: 0.25rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-2 { margin-top: 0.5rem; }
+    .my-4 { margin-top: 1rem; margin-bottom: 1rem; }
+    .my-6 { margin-top: 1.5rem; margin-bottom: 1.5rem; }
+    .mt-8 { margin-top: 2rem; }
+    .pt-6 { padding-top: 1.5rem; }
+    .mr-3 { margin-right: 0.75rem; }
+    .mt-0\.5 { margin-top: 0.125rem; }
+    .mr-2 { margin-right: 0.5rem; }
+    .ml-2 { margin-left: 0.25rem; }
+    
+    .flex { display: flex; }
+    .inline-flex { display: inline-flex; }
+    .grid { display: grid; }
+    .hidden { display: none; }
+    .items-start { align-items: flex-start; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .justify-end { justify-content: flex-end; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-x-6 { column-gap: 1.5rem; }
+    .gap-y-2 { row-gap: 0.5rem; }
+    .flex-col { flex-direction: column; }
+    .flex-wrap { flex-wrap: wrap; }
+    .flex-shrink-0 { flex-shrink: 0; }
+    .space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: calc(0.5rem * 1); margin-bottom: calc(0.5rem * 0); }
+    .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: calc(1rem * 1); margin-bottom: calc(1rem * 0); }
+
+
+    .rounded-2xl { border-radius: 1rem; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .rounded-lg { border-radius: 0.5rem; }
+    .rounded-full { border-radius: 9999px; }
+    .border { border-width: 1px; }
+    .border-slate-700 { border-color: #334155; }
+    .border-amber-500\/30 { border-color: rgba(245, 158, 11, 0.3); }
+    .border-l { border-left-width: 1px; }
+    .border-slate-600 { border-color: #475569; }
+    .border-t { border-top-width: 1px; }
+    
+    .shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+    .shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+
+    .overflow-y-auto { overflow-y: auto; }
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .top-2 { top: 0.5rem; }
+    .right-2 { right: 0.5rem; }
+
+    .list-disc { list-style-type: disc; }
+    .list-inside { list-style-position: inside; }
+
+    .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+    .duration-200 { transition-duration: 200ms; }
+
+    .transform { transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1); }
+    .hover\:scale-105:hover { transform: scale(1.05); }
+
+    .cursor-pointer { cursor: pointer; }
+    .resize-y { resize: vertical; }
+    .resize-none { resize: none; }
+
+    .hover\:text-slate-300:hover { color: #cbd5e1; }
+    .hover\:text-blue-400:hover { color: #60a5fa; }
+
+    .form-checkbox { -webkit-appearance: none; -moz-appearance: none; appearance: none; padding: 0; -webkit-print-color-adjust: exact; color-adjust: exact; display: inline-block; vertical-align: middle; background-origin: border-box; -webkit-user-select: none; -moz-user-select: none; user-select: none; flex-shrink: 0; height: 1rem; width: 1rem; color: #4f46e5; background-color: #fff; border-color: #6b7280; border-width: 1px; border-radius: 0.25rem; }
+    .form-checkbox:checked { background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e"); border-color: transparent; background-color: currentColor; background-size: 100% 100%; background-position: center; background-repeat: no-repeat; }
+    .form-radio { -webkit-appearance: none; -moz-appearance: none; appearance: none; padding: 0; -webkit-print-color-adjust: exact; color-adjust: exact; display: inline-block; vertical-align: middle; background-origin: border-box; -webkit-user-select: none; -moz-user-select: none; user-select: none; flex-shrink: 0; border-radius: 100%; height: 1rem; width: 1rem; color: #4f46e5; background-color: #fff; border-color: #6b7280; border-width: 1px; }
+    .form-radio:checked { background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e"); border-color: transparent; background-color: currentColor; background-size: 100% 100%; background-position: center; background-repeat: no-repeat; }
+
+    .text-blue-500 { color: #3b82f6; }
+    .focus\:ring-blue-500:focus { --tw-ring-color: #3b82f6; }
+
+    .focus\:outline-none:focus { outline: 2px solid transparent; outline-offset: 2px; }
+    .focus\:ring-2:focus { --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color); --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }
+    .focus\:ring-offset-2:focus { --tw-ring-offset-width: 2px; }
+    .focus\:ring-offset-slate-800:focus { --tw-ring-offset-color: #1e293b; }
+
+    .ring-1 { --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color); --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000); }
+    .ring-white\/10 { --tw-ring-color: rgba(255, 255, 255, 0.1); }
+    
+    @media (min-width: 640px) {
+        .sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .sm\:text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .sm\:flex-row { flex-direction: row; }
+    }
+</style>
+</head>
+<body class="bg-slate-900 text-gray-100 min-h-screen py-10 px-4 font-sans flex items-start justify-center">
+<div class="w-full max-w-2xl bg-slate-800 p-8 rounded-2xl shadow-lg border border-slate-700">
+    <div class="flex justify-center mb-4">
+        <img src="tennen_logo_app.png" alt="Tennen Logo" class="h-20" />
+    </div>
+    <div class="flex justify-center items-center gap-3 mb-2">
+        <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm0 2c-2.21 0-4 1.79-4 4v1h8v-1c0-2.21-1.79-4-4-4zm6 4h-2v-1c0-1.33-1.07-2.42-2.41-2.92C15.02 10.48 16 9.35 16 8c0-2.21-1.79-4-4-4S8 5.79 8 8c0 1.35.98 2.48 2.41 2.92C9.07 11.58 8 12.67 8 14v1H6c-1.1 0-2 .9-2 2v2h16v-2c0-1.1-.9-2-2-2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+         <h1 class="text-3xl font-bold text-center text-blue-400">Prompt Builder<br/>Illustration to Figure</h1>
+    </div>
+    <p class="text-center text-slate-400 mb-6">Select options from each section to build a prompt for turning your illustration into a figure.</p>
+
+    <div class="my-6 p-4 rounded-lg border border-slate-700 bg-slate-700" id="generation-mode-section">
+        <h2 class="text-lg font-semibold text-slate-300 mb-3 flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <span>Generation Mode</span>
+        </h2>
+        <div class="flex items-center gap-4">
+            <label class="flex items-center text-slate-400">
+                <input checked="" class="form-radio text-blue-500 focus:ring-blue-500" name="generation-mode" type="radio" value="standard"/>
+                <span class="ml-2">Standard Generation</span>
+            </label>
+            <label class="flex items-center text-slate-400">
+                <input class="form-radio text-blue-500 focus:ring-blue-500" name="generation-mode" type="radio" value="extended"/>
+                <span class="ml-2">Extended Generation</span>
+            </label>
+        </div>
+    </div>
+    
+    <div id="standard-options-container">
+        <div class="mb-6 p-4 rounded-lg border border-amber-500/30 bg-amber-500/10 text-amber-200 text-sm">
+            <div class="flex items-start">
+                <svg class="h-5 w-5 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <div>
+                    <p class="font-semibold">【Recommended Settings】</p>
+                    <p class="mt-1 leading-relaxed">To ensure the AI accurately reflects the intent of the prompts created with this builder, it is recommended to set both Temperature and Top P to "0" in the Nano Banana model settings when generating images in Google AI Studio.<br/>Better results tend to be obtained when generating images from Gemini's Nano Banana.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mb-4 p-4 rounded-lg border border-slate-700 bg-slate-700" id="aspect-ratio-section">
+            <h2 class="text-lg font-semibold text-slate-300 mb-2 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 8V6a2 2 0 012-2h2M3 16v2a2 2 0 002 2h2M19 8V6a2 2 0 00-2-2h-2M19 16v2a2 2 0 01-2 2h-2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <span>Aspect Ratio</span>
+            </h2>
+            <div class="flex items-center gap-4 mb-4">
+                <label class="flex items-center text-slate-400">
+                    <input checked="" class="form-radio text-blue-500 focus:ring-blue-500" name="aspect-ratio-option" type="radio" value="match"/>
+                    <span class="ml-2">Match Reference Image</span>
+                </label>
+                <label class="flex items-center text-slate-400">
+                    <input class="form-radio text-blue-500 focus:ring-blue-500" name="aspect-ratio-option" type="radio" value="change"/>
+                    <span class="ml-2">Change Aspect Ratio</span>
+                </label>
+            </div>
+            <div class="hidden" id="aspect-ratio-controls">
+                <div class="text-sm text-slate-400 mb-4 leading-relaxed">
+                    <p class="mb-2">If you want to change the aspect ratio of the generated image, please download the "Aspect Ratio Specification Image" for your desired ratio from here.</p>
+                    <div class="text-xs space-y-2 my-4 p-3 bg-slate-900 rounded-lg">
+                        <p class="font-semibold text-slate-300">【Notes】</p>
+                        <ul class="list-disc list-inside pl-2 space-y-1">
+                            <li>Once downloaded, each aspect ratio image can be used repeatedly.</li>
+                            <li>Due to the model's characteristics, the output may not always be generated in the exact specified aspect ratio.</li>
+                            <li>When changing the aspect ratio, it is recommended to generate with "No Package" and "No Background or Studio" to minimize composition collapse.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded-lg">
+                        <strong class="text-slate-200">【Important】Upload Order in Nano Banana:</strong><br/>
+                        <p class="my-1 text-xs">The aspect ratio of the last uploaded image will be applied.</p>
+                        <ul class="list-disc list-inside mt-2 space-y-1 text-xs sm:text-sm">
+                            <li><strong>Standard case:</strong><br/><span class="pl-4 font-mono">1. Illustration → 2. Aspect Ratio Image</span></li>
+                            <li><strong>Using a logo image:</strong><br/><span class="pl-4 font-mono">1. Logo Image → 2. Illustration → 3. Aspect Ratio Image</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4 mb-2">
+                    <button class="w-full bg-sky-600 hover:bg-sky-700 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-all duration-200 flex items-center justify-center gap-2" id="download-all-aspects-btn">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <span>Download All in a Batch</span>
+                    </button>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="aspect-ratio-buttons">
+                    </div>
+            </div>
+        </div>
+        <div class="mb-4 p-4 rounded-lg border border-slate-700 bg-slate-700">
+            <h2 class="text-lg font-semibold text-slate-300 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <span>Package Option</span>
+            </h2>
+            <div class="flex flex-col sm:flex-row gap-4 mb-4">
+                <label class="flex items-center text-slate-400">
+                    <input type="radio" name="package-option" value="none" checked class="form-radio text-blue-500 focus:ring-blue-500">
+                    <span class="ml-2">No Package</span>
+                </label>
+                <label class="flex items-center text-slate-400">
+                    <input type="radio" name="package-option" value="background" class="form-radio text-blue-500 focus:ring-blue-500">
+                    <span class="ml-2">Package in Background</span>
+                </label>
+                <label class="flex items-center text-slate-400">
+                    <input type="radio" name="package-option" value="inbox" class="form-radio text-blue-500 focus:ring-blue-500">
+                    <span class="ml-2">Inside Package</span>
+                </label>
+            </div>
+            <div class="hidden pl-6 border-l border-slate-600" id="package-options-container">
+                <div class="mb-2">
+                    <label class="block text-sm font-medium text-slate-300 mb-1" for="package-text">Text on Package:</label>
+                    <input class="w-full p-2 rounded-lg bg-slate-800 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500" id="package-text" placeholder="e.g., Figure Name" type="text"/>
+                </div>
+                <div class="checkbox-container">
+                    <input class="form-checkbox text-blue-500 rounded focus:ring-blue-500" id="use-image-as-texture" type="checkbox"/>
+                    <label class="text-slate-400" for="use-image-as-texture">Use reference image as texture</label>
+                </div>
+                <div class="checkbox-container">
+                    <input class="form-checkbox text-blue-500 rounded focus:ring-blue-500" id="include-logo" type="checkbox"/>
+                    <label class="text-slate-400" for="include-logo">Add a logo</label>
+                </div>
+                <div class="hidden mt-4" id="logo-options-container">
+                    <div class="mb-2">
+                        <label class="block text-sm font-medium text-slate-300 mb-1">Select Logo Type:</label>
+                        <div class="flex items-center gap-4">
+                            <label class="flex items-center text-slate-400">
+                                <input checked="" class="form-radio text-blue-500 focus:ring-blue-500" name="logo-type" type="radio" value="image"/>
+                                <span class="ml-2">Place Logo Image</span>
+                            </label>
+                            <label class="flex items-center text-slate-400">
+                                <input class="form-radio text-blue-500 focus:ring-blue-500" name="logo-type" type="radio" value="text"/>
+                                <span class="ml-2">Generate from Text</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mt-2" id="logo-image-instructions">
+                        <p class="text-sm text-slate-400 mb-2 leading-relaxed bg-slate-900 p-3 rounded-lg">
+                            <strong class="text-slate-200">【Important】How to use a logo image:</strong><br/>
+                            In Nano Banana, upload the images in the following order:<br/>
+                            <strong class="text-amber-400 font-mono">1. Image for the logo</strong><br/>
+                            <strong class="text-amber-400 font-mono">2. Illustration to be turned into a figure</strong><br/>
+                            <span class="text-xs">(If changing aspect ratio, upload the aspect ratio image last)</span>
+                        </p>
+                    </div>
+                    <div class="hidden mt-2" id="logo-text-container">
+                        <label class="block text-sm font-medium text-slate-300 mb-1" for="logo-text">Text for Logo:</label>
+                        <input class="w-full p-2 rounded-lg bg-slate-800 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500" id="logo-text" placeholder="e.g., Brand Name" type="text"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-4 p-4 rounded-lg border border-slate-700 bg-slate-700">
+            <h2 class="text-lg font-semibold text-slate-300 mb-2 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <span>Background Option</span>
+            </h2>
+            <div class="checkbox-container">
+                <input class="form-checkbox text-blue-500 rounded focus:ring-blue-500" id="include-background" type="checkbox"/>
+                <label class="text-slate-400" for="include-background">Place a background</label>
+            </div>
+            <div class="hidden pl-6 border-l border-slate-600" id="background-options-container">
+                <div class="mb-2">
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Background Preset:</label>
+                    <div class="flex flex-wrap gap-4">
+                        <label class="flex items-center text-slate-400">
+                            <input checked="" class="form-radio text-blue-500 focus:ring-blue-500" name="background-type" type="radio" value="studio"/>
+                            <span class="ml-2">Studio</span>
+                        </label>
+                        <label class="flex items-center text-slate-400">
+                            <input class="form-radio text-blue-500 focus:ring-blue-500" name="background-type" type="radio" value="shop"/>
+                            <span class="ml-2">Shop</span>
+                        </label>
+                        <label class="flex items-center text-slate-400">
+                            <input class="form-radio text-blue-500 focus:ring-blue-500" name="background-type" type="radio" value="desk"/>
+                            <span class="ml-2">On a Desk</span>
+                        </label>
+                        <label class="flex items-center text-slate-400">
+                            <input class="form-radio text-blue-500 focus:ring-blue-500" name="background-type" type="radio" value="diorama"/>
+                            <span class="ml-2">Diorama</span>
+                        </label>
+                        <label class="flex items-center text-slate-400">
+                            <input class="form-radio text-blue-500 focus:ring-blue-500" name="background-type" type="radio" value="other"/>
+                            <span class="ml-2">Other</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <label class="block text-sm font-medium text-slate-300 mb-1" for="background-prompt-input">Background Prompt (Editable):</label>
+                    <textarea class="w-full h-24 p-2 text-sm rounded-lg bg-slate-800 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" id="background-prompt-input" placeholder="Describe freely"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="mb-4 p-4 rounded-lg border border-slate-700 bg-slate-700" id="display-base-section">
+            <div class="text-sm text-slate-300 font-semibold mb-2 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-12v4m-2-2h4m5 10v4m-2-2h4M5 3a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V5a2 2 0 00-2-2zm14 0a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V5a2 2 0 00-2-2zM5 17a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V19a2 2 0 00-2-2zm14 0a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V19a2 2 0 00-2-2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <span>Display Base</span>
+            </div>
+            <label class="inline-flex items-center gap-2 text-sm text-slate-300">
+                <input checked="checked" id="display-base-toggle" type="checkbox" class="form-checkbox text-blue-500 rounded focus:ring-blue-500"/>
+                <span>Use Display Base</span>
+            </label>
+            <div class="text-xs text-slate-500 mt-1">Turning this off will hide the display base.</div>
+            
+            <div class="mt-4 pl-6 border-l border-slate-600 space-y-4" id="display-base-options-container">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Type</label>
+                    <div class="flex flex-wrap gap-x-6 gap-y-2">
+                        <label class="flex items-center text-slate-400"><input type="radio" name="display-base-type" value="simple" checked class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Simple</span></label>
+                        <label class="flex items-center text-slate-400"><input type="radio" name="display-base-type" value="diorama" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Diorama</span></label>
+                        <label class="flex items-center text-slate-400"><input type="radio" name="display-base-type" value="other" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Other</span></label>
+                    </div>
+                </div>
+
+                <div id="simple-base-options" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Shape</label>
+                        <div class="flex flex-wrap gap-x-6 gap-y-2">
+                            <label class="flex items-center text-slate-400"><input type="radio" name="display-base-shape" value="round" checked class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Round</span></label>
+                            <label class="flex items-center text-slate-400"><input type="radio" name="display-base-shape" value="square" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Square</span></label>
+                            <label class="flex items-center text-slate-400"><input type="radio" name="display-base-shape" value="hexagonal" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Hexagonal</span></label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Material</label>
+                        <div class="flex flex-wrap gap-x-6 gap-y-2">
+                            <label class="flex items-center text-slate-400"><input type="radio" name="display-base-material" value="plastic" checked class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Plastic</span></label>
+                            <label class="flex items-center text-slate-400"><input type="radio" name="display-base-material" value="clear" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Clear</span></label>
+                            <label class="flex items-center text-slate-400"><input type="radio" name="display-base-material" value="metal" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Metal</span></label>
+                            <label class="flex items-center text-slate-400"><input type="radio" name="display-base-material" value="wood" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Wood</span></label>
+                            <label class="flex items-center text-slate-400"><input type="radio" name="display-base-material" value="mineral" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Mineral</span></label>
+                        </div>
+                    </div>
+                    <div id="base-material-details" class="pl-4 border-l border-slate-700">
+                        <div id="base-color-picker-container">
+                             <label class="flex items-center text-sm font-medium text-slate-300 mb-2">Color: <input type="color" id="display-base-color" value="#ffffff" class="ml-2 bg-slate-800"></label>
+                        </div>
+                        <div id="base-metal-options" class="hidden space-y-2">
+                            <label class="block text-sm font-medium text-slate-300">Type</label>
+                            <div class="flex flex-wrap gap-x-6 gap-y-2">
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-metal-type" value="gold" checked class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Gold</span></label>
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-metal-type" value="silver" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Silver</span></label>
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-metal-type" value="copper" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Copper</span></label>
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-metal-type" value="chrome" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Chrome</span></label>
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-metal-type" value="hairline" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Hairline</span></label>
+                            </div>
+                        </div>
+                        <div id="base-wood-options" class="hidden space-y-2">
+                            <label class="block text-sm font-medium text-slate-300">Type</label>
+                             <div class="flex flex-wrap gap-x-6 gap-y-2">
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-wood-type" value="light" checked class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Light Wood</span></label>
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-wood-type" value="dark" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Dark Wood</span></label>
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-wood-type" value="reddish" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Reddish Wood</span></label>
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-wood-type" value="old" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Old Wood</span></label>
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-wood-type" value="charred" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Charred Wood</span></label>
+                            </div>
+                        </div>
+                         <div id="base-mineral-options" class="hidden space-y-2">
+                            <label class="block text-sm font-medium text-slate-300">Type</label>
+                            <div class="flex flex-wrap gap-x-6 gap-y-2">
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-mineral-type" value="marble" checked class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Marble</span></label>
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-mineral-type" value="granite" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Granite</span></label>
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-mineral-type" value="obsidian" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Obsidian</span></label>
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-mineral-type" value="crystal" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Crystal</span></label>
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-mineral-type" value="ruby" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Ruby</span></label>
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-mineral-type" value="sapphire" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Sapphire</span></label>
+                                <label class="flex items-center text-slate-400"><input type="radio" name="base-mineral-type" value="emerald" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Emerald</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="diorama-base-options" class="hidden space-y-2">
+                    <label class="block text-sm font-medium text-slate-300">Type</label>
+                    <div class="flex flex-wrap gap-x-6 gap-y-2">
+                        <label class="flex items-center text-slate-400"><input type="radio" name="diorama-type" value="rocky" checked class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Rocky Ground</span></label>
+                        <label class="flex items-center text-slate-400"><input type="radio" name="diorama-type" value="rubble" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Rubble</span></label>
+                        <label class="flex items-center text-slate-400"><input type="radio" name="diorama-type" value="puddle" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Puddle</span></label>
+                        <label class="flex items-center text-slate-400"><input type="radio" name="diorama-type" value="grass" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Grass</span></label>
+                        <label class="flex items-center text-slate-400"><input type="radio" name="diorama-type" value="cobblestone" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Cobblestone</span></label>
+                        <label class="flex items-center text-slate-400"><input type="radio" name="diorama-type" value="gaming" class="form-radio text-blue-500 focus:ring-blue-500 mr-2"> <span>Gaming</span></label>
+                    </div>
+                </div>
+                <div id="other-base-options" class="hidden">
+                     <label class="block text-sm font-medium text-slate-300 mb-1" for="display-base-prompt-input">Display Base Prompt (Editable):</label>
+                    <textarea class="w-full h-24 p-2 text-sm rounded-lg bg-slate-800 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" id="display-base-prompt-input" placeholder="Describe freely"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center justify-center my-6">
+            <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl shadow-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 flex items-center justify-center gap-2" id="generate-prompt-btn">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-12v4m-2-2h4m5 10v4m-2-2h4M5 3a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V5a2 2 0 00-2-2zm14 0a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V5a2 2 0 00-2-2zM5 17a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V19a2 2 0 00-2-2zm14 0a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V19a2 2 0 00-2-2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <span>Build Prompt</span>
+            </button>
+        </div>
+        <div class="hidden" id="result-area">
+            <h2 class="text-lg font-semibold text-slate-300 mb-2">Generated Prompt:</h2>
+            <p class="text-xs text-slate-400 mb-2">You can edit this prompt directly. Copy and paste it into the Nano Banana input field.</p>
+            <div class="relative">
+                <textarea class="w-full h-48 p-3 pr-20 text-sm rounded-lg bg-slate-700 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y" id="prompt-output"></textarea>
+                <button class="absolute top-2 right-2 bg-slate-600 hover:bg-slate-500 text-white font-semibold py-2 px-3 rounded-lg text-xs transition-all duration-200 flex items-center gap-1" id="copy-prompt-btn">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <span>Copy</span>
+                </button>
+            </div>
+        </div>
+        <div class="mt-6 mb-4 p-4 rounded-lg border border-slate-700 bg-slate-700" id="batch-helper">
+            <div class="text-sm text-slate-300 font-semibold flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <span>Create Variations</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-2">Select the type of variation you want to create.</p>
+            <div class="mt-3 flex flex-col sm:flex-row gap-4">
+                <label class="flex items-center text-slate-400">
+                    <input checked="" class="form-radio text-blue-500 focus:ring-blue-500" name="batch-variation-type" type="radio" value="angle"/>
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 011.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <span class="ml-1 text-sm">Camera Angle Variations</span>
+                </label>
+                <label class="flex items-center text-slate-400">
+                    <input class="form-radio text-blue-500 focus:ring-blue-500" name="batch-variation-type" type="radio" value="light"/>
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <span class="ml-1 text-sm">Lighting Variations</span>
+                </label>
+            </div>
+            <div class="mt-4 flex gap-3 flex-wrap">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-xl shadow-lg transition-all flex items-center gap-2" id="batch-generate">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 14v6m-3-3h6M3 10v10a2 2 0 002 2h10v-6M3 10V3a2 2 0 012-2h10a2 2 0 012 2v6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <span>Create Variations</span>
+                </button>
+                <button class="bg-slate-600 hover:bg-slate-500 text-white font-semibold py-2 px-4 rounded-xl transition-all flex items-center gap-2" id="batch-download">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <span>Download Batch .txt</span>
+                </button>
+            </div>
+            <div class="mt-4 space-y-2" id="batch-list"></div>
+        </div>
+    </div>
+
+    <div class="hidden" id="extended-options-container">
+        <div class="mb-4 p-4 rounded-lg border border-slate-700 bg-slate-700">
+            <h2 class="text-lg font-semibold text-slate-300 mb-3 flex items-center gap-2">
+                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6V4m0 16v-2m8-8h2M4 12H2m15.364 6.364l-1.414-1.414M6.05 6.05l-1.414-1.414m12.728 12.728l-1.414-1.414M6.05 17.95l-1.414 1.414" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <span>Extended Type</span>
+            </h2>
+            <div class="flex items-center gap-4 flex-wrap">
+                <label class="flex items-center text-slate-400">
+                    <input type="radio" name="extended-mode-type" value="three-view" checked class="form-radio text-blue-500 focus:ring-blue-500">
+                    <span class="ml-2">Three-View Generation</span>
+                </label>
+                <label class="flex items-center text-slate-400">
+                    <input type="radio" name="extended-mode-type" value="acrylic-stand" class="form-radio text-blue-500 focus:ring-blue-500">
+                    <span class="ml-2">Acrylic Stand Generation</span>
+                </label>
+                <label class="flex items-center text-slate-400">
+                    <input type="radio" name="extended-mode-type" value="line-art" class="form-radio text-blue-500 focus:ring-blue-500">
+                    <span class="ml-2">Line Art Generation</span>
+                </label>
+            </div>
+        </div>
+        
+        <div id="three-view-container">
+            <div class="mb-4 p-4 rounded-lg border border-slate-700 bg-slate-700">
+                <h2 class="text-lg font-semibold text-slate-300 mb-2 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 7v10M12 4v16M20 7v10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <span>Three-View Prompt Generation</span>
+                </h2>
+                <p class="text-sm text-slate-400 mb-4">Create a dedicated prompt for generating front, side, and back views of a character. Press the button below to generate and copy the prompt.</p>
+
+                <div class="mt-4 border-t border-slate-600 pt-4">
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Generation Type</label>
+                    <div class="flex items-center gap-4">
+                        <label class="flex items-center text-slate-400">
+                            <input type="radio" name="three-view-type" value="figure" checked class="form-radio text-blue-500 focus:ring-blue-500">
+                            <span class="ml-2">Generate as Figure</span>
+                        </label>
+                        <label class="flex items-center text-slate-400">
+                            <input type="radio" name="three-view-type" value="asis" class="form-radio text-blue-500 focus:ring-blue-500">
+                            <span class="ml-2">Generate As-Is</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mt-4 border-t border-slate-600 pt-4" id="three-view-display-base-section-container">
+                    </div>
+            </div>
+            <div class="flex items-center justify-center my-6">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl shadow-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 flex items-center justify-center gap-2" id="generate-three-view-prompt-btn">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-12v4m-2-2h4m5 10v4m-2-2h4M5 3a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V5a2 2 0 00-2-2zm14 0a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V5a2 2 0 00-2-2zM5 17a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V19a2 2 0 00-2-2zm14 0a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V19a2 2 0 00-2-2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <span>Build Prompt</span>
+                </button>
+            </div>
+            <div class="hidden" id="three-view-result-area">
+                <h2 class="text-lg font-semibold text-slate-300 mb-2">Generated Prompt:</h2>
+                 <p class="text-xs text-slate-400 mb-2">You can edit this prompt directly. Copy and paste it into the Nano Banana input field.</p>
+                <div class="relative">
+                    <textarea class="w-full h-48 p-3 pr-20 text-sm rounded-lg bg-slate-700 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y" id="three-view-prompt-output"></textarea>
+                    <button class="absolute top-2 right-2 bg-slate-600 hover:bg-slate-500 text-white font-semibold py-2 px-3 rounded-lg text-xs transition-all duration-200 flex items-center gap-1" id="copy-three-view-prompt-btn">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <span>Copy</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+         <div class="hidden" id="line-art-container">
+            <div class="mb-4 p-4 rounded-lg border border-slate-700 bg-slate-700">
+                <h2 class="text-lg font-semibold text-slate-300 mb-2 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.536L16.732 3.732z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <span>Line Art Prompt Generation</span>
+                </h2>
+                <p class="text-sm text-slate-400">Create a dedicated prompt to generate a line art version of the reference image. Press the button below to generate and copy the prompt.</p>
+            </div>
+            <div class="flex items-center justify-center my-6">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl shadow-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 flex items-center justify-center gap-2" id="generate-line-art-prompt-btn">
+                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-12v4m-2-2h4m5 10v4m-2-2h4M5 3a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V5a2 2 0 00-2-2zm14 0a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V5a2 2 0 00-2-2zM5 17a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V19a2 2 0 00-2-2zm14 0a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V19a2 2 0 00-2-2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <span>Build Prompt</span>
+                </button>
+            </div>
+            <div class="hidden" id="line-art-result-area">
+                 <h2 class="text-lg font-semibold text-slate-300 mb-2">Generated Prompt:</h2>
+                 <p class="text-xs text-slate-400 mb-2">You can edit this prompt directly. Copy and paste it into the Nano Banana input field.</p>
+                 <div class="relative">
+                     <textarea class="w-full h-48 p-3 pr-20 text-sm rounded-lg bg-slate-700 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y" id="line-art-prompt-output"></textarea>
+                     <button class="absolute top-2 right-2 bg-slate-600 hover:bg-slate-500 text-white font-semibold py-2 px-3 rounded-lg text-xs transition-all duration-200 flex items-center gap-1" id="copy-line-art-prompt-btn">
+                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                         <span>Copy</span>
+                     </button>
+                 </div>
+            </div>
+        </div>
+        
+        <div class="hidden" id="acrylic-stand-container">
+            <div class="mb-4 p-4 rounded-lg border border-slate-700 bg-slate-700">
+                <h2 class="text-lg font-semibold text-slate-300 mb-2 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" /></svg>
+                    <span>Acrylic Stand Prompt Generation</span>
+                </h2>
+                <p class="text-sm text-slate-400 mb-4">Create a dedicated prompt to generate the reference image as an acrylic stand. Press the button below to generate and copy the prompt.</p>
+                 <div class="mb-4 p-4 rounded-lg border border-slate-700 bg-slate-700" id="acrylic-stand-background-section">
+                    <h3 class="text-md font-semibold text-slate-300 mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <span>Background Option</span>
+                    </h3>
+                    <div class="checkbox-container">
+                        <input class="form-checkbox text-blue-500 rounded focus:ring-blue-500" id="acrylic-stand-include-background" type="checkbox"/>
+                        <label class="text-slate-400" for="acrylic-stand-include-background">Place a background</label>
+                    </div>
+                    <div class="hidden pl-6 border-l border-slate-600" id="acrylic-stand-background-options-container">
+                        <div class="mb-2">
+                            <label class="block text-sm font-medium text-slate-300 mb-1">Background Preset:</label>
+                            <div class="flex flex-wrap gap-4">
+                                <label class="flex items-center text-slate-400">
+                                    <input checked="" class="form-radio text-blue-500 focus:ring-blue-500" name="acrylic-stand-background-type" type="radio" value="studio"/>
+                                    <span class="ml-2">Studio</span>
+                                </label>
+                                <label class="flex items-center text-slate-400">
+                                    <input class="form-radio text-blue-500 focus:ring-blue-500" name="acrylic-stand-background-type" type="radio" value="shop"/>
+                                    <span class="ml-2">Shop</span>
+                                </label>
+                                <label class="flex items-center text-slate-400">
+                                    <input class="form-radio text-blue-500 focus:ring-blue-500" name="acrylic-stand-background-type" type="radio" value="desk"/>
+                                    <span class="ml-2">On a Desk</span>
+                                </label>
+                                <label class="flex items-center text-slate-400">
+                                    <input class="form-radio text-blue-500 focus:ring-blue-500" name="acrylic-stand-background-type" type="radio" value="diorama"/>
+                                    <span class="ml-2">Diorama</span>
+                                </label>
+                                <label class="flex items-center text-slate-400">
+                                    <input class="form-radio text-blue-500 focus:ring-blue-500" name="acrylic-stand-background-type" type="radio" value="other"/>
+                                    <span class="ml-2">Other</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-slate-300 mb-1" for="acrylic-stand-background-prompt-input">Background Prompt (Editable):</label>
+                            <textarea class="w-full h-24 p-2 text-sm rounded-lg bg-slate-800 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" id="acrylic-stand-background-prompt-input" placeholder="Describe freely"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-center my-6">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl shadow-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800 flex items-center justify-center gap-2" id="generate-acrylic-stand-prompt-btn">
+                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-12v4m-2-2h4m5 10v4m-2-2h4M5 3a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V5a2 2 0 00-2-2zm14 0a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V5a2 2 0 00-2-2zM5 17a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V19a2 2 0 00-2-2zm14 0a2 2 0 00-2 2v1.5a2.5 2.5 0 005 0V19a2 2 0 00-2-2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <span>Build Prompt</span>
+                </button>
+            </div>
+            <div class="hidden" id="acrylic-stand-result-area">
+                 <h2 class="text-lg font-semibold text-slate-300 mb-2">Generated Prompt:</h2>
+                 <p class="text-xs text-slate-400 mb-2">You can edit this prompt directly. Copy and paste it into the Nano Banana input field.</p>
+                 <div class="relative">
+                     <textarea class="w-full h-48 p-3 pr-20 text-sm rounded-lg bg-slate-700 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y" id="acrylic-stand-prompt-output"></textarea>
+                     <button class="absolute top-2 right-2 bg-slate-600 hover:bg-slate-500 text-white font-semibold py-2 px-3 rounded-lg text-xs transition-all duration-200 flex items-center gap-1" id="copy-acrylic-stand-prompt-btn">
+                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                         <span>Copy</span>
+                     </button>
+                 </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <footer class="mt-8 pt-6 border-t border-slate-700 text-sm text-slate-500">
+        <details class="mb-4">
+            <summary class="cursor-pointer hover:text-slate-300 transition-colors">Terms of Use</summary>
+            <div class="mt-3 p-4 bg-slate-900 rounded-lg text-xs space-y-2">
+                <div class="font-bold text-slate-300">Terms of Use for Purchaser-Exclusive Content</div>
+                <ul class="list-disc list-inside">
+                    <li>This content is for the use of the purchaser only. Any redistribution, including sharing URLs with third parties, reprinting, publishing, copying, or secondary distribution, is prohibited.</li>
+                    <li>You are solely responsible for any actions and their results arising from the use of this content (such as publishing, posting, or distributing generated materials). Please exercise your own judgment.</li>
+                    <li>Display and functionality may differ depending on your environment (browser, extensions, network, etc.). We do not guarantee the completeness, continuity, or suitability of its operation.</li>
+                    <li>The content, terms of service, and URL are subject to change or discontinuation without notice. In case of unauthorized use, we may suspend future provision of the content.</li>
+                </ul>
+                <div class="text-slate-400 mt-2">If you do not agree to the above terms, you may not use this content.</div>
+            </div>
+        </details>
+        <div class="text-center">
+            <p>Author: Tennen</p>
+            <div class="flex justify-center items-center gap-4 mt-2 text-sm">
+                <a class="text-slate-400 hover:text-blue-400 flex items-center gap-1 transition-colors" href="https://x.com/munou_ac" rel="noopener noreferrer" target="_blank">
+                    <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                </a>
+                <span class="text-slate-600">/</span>
+                <a class="text-slate-400 hover:text-blue-400 transition-colors" href="https://note.com/munou_ac" rel="noopener noreferrer" target="_blank">note</a>
+            </div>
+        </div>
+        <p class="text-center mt-4 text-xs">© 2025 Tennen. All Rights Reserved.</p>
+        <div class="mt-6 text-center" id="license-box">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 ring-1 ring-white/10 shadow-sm">
+                <span class="text-slate-400 text-xs">License ID</span>
+                <code class="license-id text-emerald-300 text-xs font-semibold tracking-wider">NB-0000-0000</code>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div id="consent-overlay">
+    <div class="consent-dialog">
+        <h2 class="text-xl font-bold text-slate-200 mb-4">
+            Terms of Use for Purchaser-Exclusive Content
+        </h2>
+        <div class="text-sm text-slate-300 space-y-3 max-h-[50vh] overflow-y-auto pr-2">
+            <ul class="list-disc list-inside space-y-2">
+                <li>This content is for the use of the purchaser only. Any redistribution, including sharing URLs with third parties, reprinting, publishing, copying, or secondary distribution, is prohibited.</li>
+            </ul>
+             <ul class="list-disc list-inside space-y-2">
+                <li>You are solely responsible for any actions and their results arising from the use of this content (such as publishing, posting, or distributing generated materials). Please exercise your own judgment.</li>
+            </ul>
+            <ul class="list-disc list-inside space-y-2">
+                <li>Display and functionality may differ depending on your environment (browser, extensions, network, etc.). We do not guarantee the completeness, continuity, or suitability of its operation.</li>
+            </ul>
+             <ul class="list-disc list-inside space-y-2">
+                <li>The content, terms of service, and URL are subject to change or discontinuation without notice. In case of unauthorized use, we may suspend future provision of the content.</li>
+            </ul>
+            <div class="text-red-400 font-semibold pt-2">
+                <p>If you do not agree to the above terms, you may not use this content.</p>
+            </div>
+            <div class="pt-2 text-xs text-slate-400">License ID: <code class="license-id text-emerald-400 font-semibold">NB-0000-0000</code></div>
+        </div>
+        <div class="mt-6 flex justify-end gap-4">
+            <button class="px-4 py-2 rounded-lg bg-slate-600 hover:bg-slate-500 text-white font-semibold transition-colors" id="consent-disagree" type="button">Disagree</button>
+            <button class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors" id="consent-agree" type="button">Agree</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const createAspectRatioButtons = () => {
+            const container = document.getElementById('aspect-ratio-buttons');
+            if (!container) return;
+            container.innerHTML = '';
+            const aspectRatios = { '1:1 (Square)': '1:1', '3:4 (Portrait)': '3:4', '4:3 (Landscape)': '4:3', '9:16 (Phone Screen)': '9:16', '16:9 (Widescreen)': '16:9' };
+            Object.entries(aspectRatios).forEach(([label, ratio]) => {
+                const button = document.createElement('button');
+                const buttonSpan = document.createElement('span');
+                buttonSpan.textContent = `DL: ${label}`;
+                
+                button.className = 'bg-slate-600 hover:bg-slate-500 text-white font-semibold py-2 px-3 rounded-lg text-sm transition-all duration-200 flex items-center justify-center gap-2';
+                button.dataset.ratio = ratio;
+
+                const icon = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
+                button.innerHTML = icon;
+                button.appendChild(buttonSpan);
+                container.appendChild(button);
+            });
+        };
+
+        const updateBackgroundPrompt = () => {
+            const bgTypeInput = document.querySelector('input[name="background-type"]:checked');
+            if (!bgTypeInput) return;
+            const selectedValue = bgTypeInput.value;
+            
+            if (selectedValue === 'other') {
+                backgroundPromptInput.value = '';
+                backgroundPromptInput.placeholder = "Describe freely";
+            } else {
+                backgroundPromptInput.value = backgroundKeywords[selectedValue];
+            }
+        };
+        
+        const updateAcrylicStandBackgroundPrompt = () => {
+            const bgTypeInput = document.querySelector('input[name="acrylic-stand-background-type"]:checked');
+            if (!bgTypeInput) return;
+            const selectedValue = bgTypeInput.value;
+            
+            if (selectedValue === 'other') {
+                acrylicStandBackgroundPromptInput.value = '';
+                acrylicStandBackgroundPromptInput.placeholder = "Describe freely";
+            } else {
+                acrylicStandBackgroundPromptInput.value = backgroundKeywords[selectedValue];
+            }
+        };
+
+        // --- Anti-Copying Measures ---
+        document.addEventListener('contextmenu', (e) => {
+            // Allow right-click on text areas and inputs for better UX
+            if (e.target.tagName.toLowerCase() !== 'textarea' && e.target.tagName.toLowerCase() !== 'input') {
+                e.preventDefault();
+            }
+        });
+        
+        // --- Element Definitions ---
+        const standardOptionsContainer = document.getElementById('standard-options-container');
+        const extendedOptionsContainer = document.getElementById('extended-options-container');
+        
+        const threeViewContainer = document.getElementById('three-view-container');
+        const generateThreeViewBtn = document.getElementById('generate-three-view-prompt-btn');
+        const threeViewResultArea = document.getElementById('three-view-result-area');
+        const threeViewPromptOutput = document.getElementById('three-view-prompt-output');
+        const copyThreeViewBtn = document.getElementById('copy-three-view-prompt-btn');
+        const threeViewDisplayBaseContainer = document.getElementById('three-view-display-base-section-container');
+        
+        const lineArtContainer = document.getElementById('line-art-container');
+        const generateLineArtBtn = document.getElementById('generate-line-art-prompt-btn');
+        const lineArtResultArea = document.getElementById('line-art-result-area');
+        const lineArtPromptOutput = document.getElementById('line-art-prompt-output');
+        const copyLineArtBtn = document.getElementById('copy-line-art-prompt-btn');
+
+        const acrylicStandContainer = document.getElementById('acrylic-stand-container');
+        const generateAcrylicStandBtn = document.getElementById('generate-acrylic-stand-prompt-btn');
+        const acrylicStandResultArea = document.getElementById('acrylic-stand-result-area');
+        const acrylicStandPromptOutput = document.getElementById('acrylic-stand-prompt-output');
+        const copyAcrylicStandBtn = document.getElementById('copy-acrylic-stand-prompt-btn');
+        const acrylicStandIncludeBackgroundCheckbox = document.getElementById('acrylic-stand-include-background');
+        const acrylicStandBackgroundOptionsContainer = document.getElementById('acrylic-stand-background-options-container');
+        const acrylicStandBackgroundPromptInput = document.getElementById('acrylic-stand-background-prompt-input');
+
+        const aspectRatioControls = document.getElementById('aspect-ratio-controls');
+        const packageOptionsContainer = document.getElementById('package-options-container');
+        const packageTextInput = document.getElementById('package-text');
+        const useImageAsTextureCheckbox = document.getElementById('use-image-as-texture');
+        const includeLogoCheckbox = document.getElementById('include-logo');
+        const logoOptionsContainer = document.getElementById('logo-options-container');
+        const logoImageInstructions = document.getElementById('logo-image-instructions');
+        const logoTextContainer = document.getElementById('logo-text-container');
+        const logoTextInput = document.getElementById('logo-text');
+        const includeBackgroundCheckbox = document.getElementById('include-background');
+        const backgroundOptionsContainer = document.getElementById('background-options-container');
+        const backgroundPromptInput = document.getElementById('background-prompt-input');
+        
+        // Display Base Elements (Standard)
+        const displayBaseToggle = document.getElementById('display-base-toggle');
+        const displayBaseOptionsContainer = document.getElementById('display-base-options-container');
+        
+        const generatePromptBtn = document.getElementById('generate-prompt-btn');
+        const resultArea = document.getElementById('result-area');
+        const promptOutput = document.getElementById('prompt-output');
+        const copyPromptBtn = document.getElementById('copy-prompt-btn');
+
+        const backgroundKeywords = {
+            studio: "neutral gradient paper sweep studio, seamless backdrop (light gray to white vertical gradient), soft three-point lighting (key at 45°, gentle fill, subtle rim), soft contact shadows, faint floor reflection, a clean set without props or clutter",
+            shop: "inside a hobby figure shop display case, clean glass shelves with soft reflections, neutral diffused overhead lighting, shallow background bokeh, unbranded presentation without any visible brand logos or signage, tidy presentation",
+            diorama: "themed diorama scene with subtle textured ground and minimal supporting props, cohesive color palette, soft directional lighting, shallow background bokeh, tidy composition, an unbranded look without any visible brand logos",
+            desk: "on a minimalist desk setup, clean wooden or matte tabletop, subtle side window light, soft ambient glow from a monitor in the distance (blurred), tidy composition, an unbranded look without any visible brand logos"
+        };
+        
+        // --- Mode Switching ---
+        document.querySelectorAll('input[name="generation-mode"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const isStandard = e.target.value === 'standard';
+                standardOptionsContainer.classList.toggle('hidden', !isStandard);
+                extendedOptionsContainer.classList.toggle('hidden', isStandard);
+                if (!isStandard) {
+                    const extendedTypeRadio = document.querySelector('input[name="extended-mode-type"]:checked');
+                    if (extendedTypeRadio) {
+                        const extendedType = extendedTypeRadio.value;
+                        threeViewContainer.classList.toggle('hidden', extendedType !== 'three-view');
+                        lineArtContainer.classList.toggle('hidden', extendedType !== 'line-art');
+                        acrylicStandContainer.classList.toggle('hidden', extendedType !== 'acrylic-stand');
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('input[name="extended-mode-type"]').forEach(radio => {
+            radio.addEventListener('change', e => {
+                const selectedValue = e.target.value;
+                threeViewContainer.classList.toggle('hidden', selectedValue !== 'three-view');
+                lineArtContainer.classList.toggle('hidden', selectedValue !== 'line-art');
+                acrylicStandContainer.classList.toggle('hidden', selectedValue !== 'acrylic-stand');
+            });
+        });
+
+        document.querySelectorAll('input[name="three-view-type"]').forEach(radio => {
+            radio.addEventListener('change', e => {
+                const showDisplayBase = e.target.value === 'figure';
+                threeViewDisplayBaseContainer.classList.toggle('hidden', !showDisplayBase);
+            });
+        });
+
+        const downloadAspectRatioImage = (ratio) => {
+            const [w, h] = ratio.split(':').map(Number);
+            const canvas = document.createElement('canvas');
+            canvas.width = w * 100;
+            canvas.height = h * 100;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#808080';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            const link = document.createElement('a');
+            link.download = `aspect_ratio_image_${w}x${h}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        };
+
+        // --- UI Toggles (Standard Mode) ---
+        document.querySelectorAll('input[name="package-option"]').forEach(radio => {
+            radio.addEventListener('change', e => {
+                const showOptions = e.target.value !== 'none';
+                packageOptionsContainer.classList.toggle('hidden', !showOptions);
+            });
+        });
+        
+        if(includeLogoCheckbox) includeLogoCheckbox.addEventListener('change', () => {
+            logoOptionsContainer.classList.toggle('hidden', !includeLogoCheckbox.checked);
+        });
+
+        document.querySelectorAll('input[name="logo-type"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const isImageType = e.target.value === 'image';
+                logoImageInstructions.classList.toggle('hidden', !isImageType);
+                logoTextContainer.classList.toggle('hidden', isImageType);
+            });
+        });
+
+        if(includeBackgroundCheckbox) includeBackgroundCheckbox.addEventListener('change', () => {
+            backgroundOptionsContainer.classList.toggle('hidden', !includeBackgroundCheckbox.checked);
+            if (includeBackgroundCheckbox.checked) {
+                updateBackgroundPrompt();
+            }
+        });
+        
+        document.querySelectorAll('input[name="background-type"]').forEach(radio => {
+            radio.addEventListener('change', updateBackgroundPrompt);
+        });
+
+        if(acrylicStandIncludeBackgroundCheckbox) acrylicStandIncludeBackgroundCheckbox.addEventListener('change', () => {
+            acrylicStandBackgroundOptionsContainer.classList.toggle('hidden', !acrylicStandIncludeBackgroundCheckbox.checked);
+            if (acrylicStandIncludeBackgroundCheckbox.checked) {
+                updateAcrylicStandBackgroundPrompt();
+            }
+        });
+
+        document.querySelectorAll('input[name="acrylic-stand-background-type"]').forEach(radio => {
+            radio.addEventListener('change', updateAcrylicStandBackgroundPrompt);
+        });
+        
+        document.querySelectorAll('input[name="aspect-ratio-option"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const shouldShowControls = e.target.value === 'change';
+                aspectRatioControls.classList.toggle('hidden', !shouldShowControls);
+            });
+        });
+        
+        const aspectRatioButtons = document.getElementById('aspect-ratio-buttons');
+        if(aspectRatioButtons) aspectRatioButtons.addEventListener('click', (e) => {
+            let target = e.target;
+            while(target && target.tagName !== 'BUTTON') {
+                target = target.parentElement;
+            }
+            if (target && target.dataset.ratio) {
+                downloadAspectRatioImage(target.dataset.ratio);
+            }
+        });
+
+        const downloadAllAspectsBtn = document.getElementById('download-all-aspects-btn');
+        if(downloadAllAspectsBtn) downloadAllAspectsBtn.addEventListener('click', () => {
+            const aspectRatios = ['1:1', '3:4', '4:3', '9:16', '16:9'];
+            aspectRatios.forEach((ratio, index) => {
+                setTimeout(() => {
+                    downloadAspectRatioImage(ratio);
+                }, index * 300);
+            });
+        });
+
+        // --- Display Base UI Logic (Standard) ---
+        const updateDisplayBaseUI = () => {
+            const useBase = displayBaseToggle.checked;
+            displayBaseOptionsContainer.classList.toggle('hidden', !useBase);
+
+            if (useBase) {
+                const baseType = document.querySelector('#display-base-section input[name="display-base-type"]:checked').value;
+                document.getElementById('simple-base-options').classList.toggle('hidden', baseType !== 'simple');
+                document.getElementById('diorama-base-options').classList.toggle('hidden', baseType !== 'diorama');
+                document.getElementById('other-base-options').classList.toggle('hidden', baseType !== 'other');
+
+                if (baseType === 'simple') {
+                    const materialType = document.querySelector('#display-base-section input[name="display-base-material"]:checked').value;
+                    document.getElementById('base-color-picker-container').classList.toggle('hidden', materialType !== 'plastic' && materialType !== 'clear');
+                    document.getElementById('base-metal-options').classList.toggle('hidden', materialType !== 'metal');
+                    document.getElementById('base-wood-options').classList.toggle('hidden', materialType !== 'wood');
+                    document.getElementById('base-mineral-options').classList.toggle('hidden', materialType !== 'mineral');
+                }
+            }
+        };
+
+        displayBaseToggle.addEventListener('change', updateDisplayBaseUI);
+        document.querySelectorAll('#display-base-section input[name="display-base-type"]').forEach(radio => radio.addEventListener('change', updateDisplayBaseUI));
+        document.querySelectorAll('#display-base-section input[name="display-base-material"]').forEach(radio => radio.addEventListener('change', updateDisplayBaseUI));
+
+        // --- Prompt Generation (Standard Mode) ---
+        const generateBasePrompt = () => {
+            const parts = [];
+            const packageOption = document.querySelector('input[name="package-option"]:checked').value;
+            const isPackage = packageOption !== 'none';
+            const useAsTexture = isPackage && useImageAsTextureCheckbox.checked;
+            const isLogo = isPackage && includeLogoCheckbox.checked;
+            const logoType = isLogo ? document.querySelector('input[name="logo-type"]:checked').value : '';
+            const isLogoImage = isLogo && logoType === 'image';
+            
+            if (isLogoImage) {
+                parts.push(`Using the provided images, transform the second image (the character) into a photorealistic PVC anime figure. Keep the character's design, pose, and colors exactly the same.`);
+            }
+            
+            parts.push("Transform this illustration into a photorealistic PVC anime figure. Keep the original character’s design, pose, and colors exactly the same. Render it as a collectible figurine made of PVC plastic, with realistic painted surface and detailed shading. Apply glossy highlights on areas such as the hair and clothing, matte finish on the skin, and subtle seam lines as seen in real manufactured figures.");
+
+            if (includeBackgroundCheckbox.checked && backgroundPromptInput.value.trim()) {
+                parts.push(`The background should be: ${backgroundPromptInput.value.trim()}`);
+            } else {
+                 parts.push("Use a neutral studio background, professional studio lighting, sharp focus, shallow depth of field, as if photographed for a catalog.");
+            }
+
+            if (displayBaseToggle.checked) {
+                const baseType = document.querySelector('#display-base-section input[name="display-base-type"]:checked').value;
+                let basePromptPart;
+                if (baseType === 'simple') {
+                    const shape = document.querySelector('#display-base-section input[name="display-base-shape"]:checked').value;
+                    const material = document.querySelector('#display-base-section input[name="display-base-material"]:checked').value;
+                    let materialDescription = '';
+                    switch (material) {
+                        case 'plastic': materialDescription = `a simple ${shape} display base made of ${document.getElementById('display-base-color').value} colored plastic`; break;
+                        case 'clear': materialDescription = `a simple ${shape} display base made of clear ${document.getElementById('display-base-color').value} colored acrylic`; break;
+                        case 'metal': materialDescription = `a simple ${shape} display base made of ${document.querySelector('#display-base-section input[name="base-metal-type"]:checked').value} metal with a high-polish metallic luster and sharp reflections`; break;
+                        case 'wood': materialDescription = `a simple ${shape} display base made of ${document.querySelector('#display-base-section input[name="base-wood-type"]:checked').value} wood grain`; break;
+                        case 'mineral':
+                            const mineralType = document.querySelector('#display-base-section input[name="base-mineral-type"]:checked').value;
+                            if (['crystal', 'ruby', 'sapphire', 'emerald'].includes(mineralType)) {
+                                materialDescription = `a display base made of raw ${mineralType}. The overall shape is a ${shape} slab, but the top surface is a natural, unpolished cluster of crystal points`;
+                            } else {
+                                materialDescription = `a simple ${shape} display base made of ${mineralType} with natural, subtle surface irregularities and a polished crystalline glint`;
+                            }
+                            break;
+                    }
+                    basePromptPart = `Place the figure on ${materialDescription}.`;
+                } else if (baseType === 'diorama') {
+                    const dioramaType = document.querySelector('#display-base-section input[name="diorama-type"]:checked').value;
+                    let dioramaDetail = '';
+                    switch (dioramaType) {
+                        case 'rocky': dioramaDetail = 'a natural rocky ground diorama base; irregular stones and stratified edges with chipped fractures, scattered gravel, and powdery dust on the top surface'; break;
+                        case 'rubble': dioramaDetail = 'a diorama base of urban rubble; featuring cracked concrete slabs, exposed rebar, scattered bricks, and a layer of fine dust'; break;
+                        case 'puddle': dioramaDetail = 'a diorama base depicting a shallow puddle on cracked asphalt, with realistic water ripples and wet-looking edges'; break;
+                        case 'grass': dioramaDetail = 'a diorama base of a patch of wild grassland, with varying heights of grass and dark soil peeking through'; break;
+                        case 'cobblestone': dioramaDetail = 'a diorama base of an old cobblestone street, with worn, unevenly set stones and moss filling the gaps between them'; break;
+                        case 'gaming': dioramaDetail = 'a diorama base of a circular gaming platform, featuring integrated RGB LED lighting that glows with vibrant colors around its edges and through subtle futuristic patterns on its surface'; break;
+                    }
+                    basePromptPart = `Place the figure on ${dioramaDetail}.`;
+                } else if (baseType === 'other') {
+                    const customBase = document.getElementById('display-base-prompt-input').value.trim();
+                    basePromptPart = customBase ? `Place the figure on ${customBase}.` : `Place the figure on a simple round display base.`;
+                }
+                if (basePromptPart) {
+                    parts.push(basePromptPart + " Add a soft shadow cast beneath it.");
+                }
+            } else {
+                parts.push("Do not include any display bases or stands.");
+            }
+
+            if (isPackage) {
+                if (packageOption === 'background') parts.push(`With its packaging box visible in the background, a plastic blister pack.`);
+                else if (packageOption === 'inbox') parts.push(`The figure is inside its original packaging, a clear plastic blister pack inside a cardboard box.`);
+                if (packageTextInput.value.trim()) parts.push(`The packaging box should clearly display the printed text: "${packageTextInput.value.trim()}".`);
+                if (useAsTexture) parts.push(isLogoImage ? `The packaging's surface should be a printed texture derived from the second image (the character illustration).` : `The packaging's surface should be a printed texture from the reference image.`);
+                if (isLogo) {
+                    if (isLogoImage) parts.push(`The packaging box should also display the first uploaded image as a printed graphic on its surface.`);
+                    else if (logoType === 'text' && logoTextInput.value.trim()) parts.push(`The packaging box should also display an abstract symbol or minimal logo design with the text "${logoTextInput.value.trim()}".`);
+                }
+            }
+            return parts.join(' ').replace(/\s+/g, ' ').trim();
+        };
+        
+        if(generatePromptBtn) generatePromptBtn.addEventListener('click', () => {
+            promptOutput.value = generateBasePrompt();
+            resultArea.classList.remove('hidden');
+        });
+
+        if(copyPromptBtn) copyPromptBtn.addEventListener('click', () => {
+            promptOutput.select();
+            document.execCommand('copy');
+            const textSpan = copyPromptBtn.querySelector('span');
+            if(textSpan) textSpan.textContent = "Copied!";
+            setTimeout(() => { if(textSpan) textSpan.textContent = "Copy"; }, 2000);
+        });
+
+        // --- Three-View Display Base UI Logic ---
+        const updateThreeViewDisplayBaseUI = () => {
+            const toggle = document.getElementById('three-view-display-base-toggle');
+            if (!toggle) return;
+            const useBase = toggle.checked;
+            document.getElementById('three-view-display-base-options-container').classList.toggle('hidden', !useBase);
+
+            if (useBase) {
+                const baseType = document.querySelector('#three-view-display-base-section input[name="three-view-display-base-type"]:checked').value;
+                document.getElementById('three-view-simple-base-options').classList.toggle('hidden', baseType !== 'simple');
+                document.getElementById('three-view-diorama-base-options').classList.toggle('hidden', baseType !== 'diorama');
+                document.getElementById('three-view-other-base-options').classList.toggle('hidden', baseType !== 'other');
+
+                if (baseType === 'simple') {
+                    const materialType = document.querySelector('#three-view-display-base-section input[name="three-view-display-base-material"]:checked').value;
+                    document.getElementById('three-view-base-color-picker-container').classList.toggle('hidden', materialType !== 'plastic' && materialType !== 'clear');
+                    document.getElementById('three-view-base-metal-options').classList.toggle('hidden', materialType !== 'metal');
+                    document.getElementById('three-view-base-wood-options').classList.toggle('hidden', materialType !== 'wood');
+                    document.getElementById('three-view-base-mineral-options').classList.toggle('hidden', materialType !== 'mineral');
+                }
+            }
+        };
+
+        const setupThreeViewListeners = () => {
+            const container = document.getElementById('three-view-display-base-section');
+            if (container) {
+                 container.addEventListener('change', (e) => {
+                    if (e.target.type === 'radio' || e.target.type === 'checkbox') {
+                        updateThreeViewDisplayBaseUI();
+                    }
+                });
+            }
+        };
+
+        // --- Prompt Generation (Three-View Mode) ---
+        const generateThreeViewPrompt = () => {
+            const type = document.querySelector('input[name="three-view-type"]:checked').value;
+            if (type === 'asis') {
+                return "Generate a three-view drawing of the character in the provided image. Produce the front view, side view, and back view as separate, individual images. The background for each view should be plain white. Faithfully reproduce the character's original design, colors, and art style without altering them.";
+            }
+
+            const basePrompt = "Generate a three-view drawing. Produce the front view, side view, and back view as separate individual images. Transform this illustration into a photorealistic PVC anime figure. Keep the original character’s design, pose, and colors exactly the same. Render it as a collectible figurine made of PVC plastic, with realistic painted surface and detailed shading. Apply glossy highlights on areas such as the hair and clothing, matte finish on the skin, and subtle seam lines as seen in real manufactured figures. Use a plain white studio background, professional studio lighting, sharp focus, shallow depth of field, as if photographed for a catalog.";
+            
+            let baseInstruction = "Do not include any display bases or stands.";
+            if (document.getElementById('three-view-display-base-toggle')?.checked) {
+                const baseType = document.querySelector('#three-view-display-base-section input[name="three-view-display-base-type"]:checked').value;
+                let basePromptPart;
+                if (baseType === 'simple') {
+                    const shape = document.querySelector('#three-view-display-base-section input[name="three-view-display-base-shape"]:checked').value;
+                    const material = document.querySelector('#three-view-display-base-section input[name="three-view-display-base-material"]:checked').value;
+                    let materialDescription = '';
+                    switch (material) {
+                        case 'plastic': materialDescription = `a simple ${shape} display base made of ${document.getElementById('three-view-display-base-color').value} colored plastic`; break;
+                        case 'clear': materialDescription = `a simple ${shape} display base made of clear ${document.getElementById('three-view-display-base-color').value} colored acrylic`; break;
+                        case 'metal': materialDescription = `a simple ${shape} display base made of ${document.querySelector('#three-view-display-base-section input[name="three-view-base-metal-type"]:checked').value} metal with a high-polish metallic luster and sharp reflections`; break;
+                        case 'wood': materialDescription = `a simple ${shape} display base made of ${document.querySelector('#three-view-display-base-section input[name="three-view-base-wood-type"]:checked').value} wood grain`; break;
+                        case 'mineral':
+                            const mineralType = document.querySelector('#three-view-display-base-section input[name="three-view-base-mineral-type"]:checked').value;
+                            if (['crystal', 'ruby', 'sapphire', 'emerald'].includes(mineralType)) {
+                                materialDescription = `a display base made of raw ${mineralType}. The overall shape is a ${shape} slab, but the top surface is a natural, unpolished cluster of crystal points`;
+                            } else {
+                                materialDescription = `a simple ${shape} display base made of ${mineralType} with natural, subtle surface irregularities and a polished crystalline glint`;
+                            }
+                            break;
+                    }
+                    basePromptPart = `Place the figure on ${materialDescription}.`;
+                } else if (baseType === 'diorama') {
+                    const dioramaType = document.querySelector('#three-view-display-base-section input[name="three-view-diorama-type"]:checked').value;
+                    let dioramaDetail = '';
+                    switch (dioramaType) {
+                        case 'rocky': dioramaDetail = 'a natural rocky ground diorama base; irregular stones and stratified edges with chipped fractures, scattered gravel, and powdery dust on the top surface'; break;
+                        case 'rubble': dioramaDetail = 'a diorama base of urban rubble; featuring cracked concrete slabs, exposed rebar, scattered bricks, and a layer of fine dust'; break;
+                        case 'puddle': dioramaDetail = 'a diorama base depicting a shallow puddle on cracked asphalt, with realistic water ripples and wet-looking edges'; break;
+                        case 'grass': dioramaDetail = 'a diorama base of a patch of wild grassland, with varying heights of grass and dark soil peeking through'; break;
+                        case 'cobblestone': dioramaDetail = 'a diorama base of an old cobblestone street, with worn, unevenly set stones and moss filling the gaps between them'; break;
+                        case 'gaming': dioramaDetail = 'a diorama base of a circular gaming platform, featuring integrated RGB LED lighting that glows with vibrant colors around its edges and through subtle futuristic patterns on its surface'; break;
+                    }
+                    basePromptPart = `Place the figure on ${dioramaDetail}.`;
+                } else if (baseType === 'other') {
+                    const customBase = document.getElementById('three-view-display-base-prompt-input').value.trim();
+                    basePromptPart = customBase ? `Place the figure on ${customBase}.` : `Place the figure on a simple round display base.`;
+                }
+                if (basePromptPart) {
+                    baseInstruction = basePromptPart + " Add a soft shadow cast beneath it.";
+                }
+            }
+            return `${basePrompt} ${baseInstruction}`;
+        };
+
+        if(generateThreeViewBtn) generateThreeViewBtn.addEventListener('click', () => {
+            threeViewPromptOutput.value = generateThreeViewPrompt();
+            threeViewResultArea.classList.remove('hidden');
+        });
+
+        if(copyThreeViewBtn) copyThreeViewBtn.addEventListener('click', () => {
+            threeViewPromptOutput.select();
+            document.execCommand('copy');
+            const textSpan = copyThreeViewBtn.querySelector('span');
+            if (textSpan) textSpan.textContent = "Copied!";
+            setTimeout(() => { if (textSpan) textSpan.textContent = "Copy"; }, 2000);
+        });
+
+        // --- Prompt Generation (Line Art & Acrylic Stand) ---
+        const lineArtPrompt = "Generate a clean line art version of the provided image. The lines should be black on a plain white background. Faithfully reproduce the character's original design and pose, capturing all the details in the line work. Do not add any colors, shading, or backgrounds.";
+        
+        const generateAcrylicStandPrompt = () => {
+            let prompt = "Transform the character in the provided illustration into a photorealistic acrylic stand figure. The figure should be printed on clear acrylic with a visible white border outline, and it must be mounted on a small, simple, clear acrylic base.";
+            
+            if (acrylicStandIncludeBackgroundCheckbox.checked && acrylicStandBackgroundPromptInput.value.trim()) {
+                 prompt += ` The background should be: ${acrylicStandBackgroundPromptInput.value.trim()}`;
+            } else {
+                 prompt += " Render it as a product photograph on a clean, neutral studio background with soft lighting.";
+            }
+            return prompt.replace(/\s+/g, ' ').trim();
+        };
+
+        if(generateLineArtBtn) generateLineArtBtn.addEventListener('click', () => {
+            lineArtPromptOutput.value = lineArtPrompt;
+            lineArtResultArea.classList.remove('hidden');
+        });
+        
+        if(copyLineArtBtn) copyLineArtBtn.addEventListener('click', () => {
+            lineArtPromptOutput.select();
+            document.execCommand('copy');
+            const textSpan = copyLineArtBtn.querySelector('span');
+            if (textSpan) textSpan.textContent = "Copied!";
+            setTimeout(() => { if (textSpan) textSpan.textContent = "Copy"; }, 2000);
+        });
+
+        if(generateAcrylicStandBtn) generateAcrylicStandBtn.addEventListener('click', () => {
+            acrylicStandPromptOutput.value = generateAcrylicStandPrompt();
+            acrylicStandResultArea.classList.remove('hidden');
+        });
+        
+        if(copyAcrylicStandBtn) copyAcrylicStandBtn.addEventListener('click', () => {
+            acrylicStandPromptOutput.select();
+            document.execCommand('copy');
+            const textSpan = copyAcrylicStandBtn.querySelector('span');
+            if (textSpan) textSpan.textContent = "Copied!";
+            setTimeout(() => { if (textSpan) textSpan.textContent = "Copy"; }, 2000);
+        });
+
+        // --- Batch Helper ---
+        const batchGenerateBtn = document.getElementById('batch-generate');
+        const batchDownloadBtn = document.getElementById('batch-download');
+        const batchListContainer = document.getElementById('batch-list');
+
+        const generateBatchPrompts = (base, type) => {
+            const list = [];
+            const variations = {
+                angle: {
+                    'Front': "camera: straight-on front angle",
+                    'Slightly Angled': "camera: subtle three-quarter view (≈30°)",
+                    'Side': "camera: profile side view (90°)",
+                    'Angled Rear': "camera: rear three-quarter view (≈135°)",
+                    'Rear': "camera: straight-on back view (180°)"
+                },
+                light: {
+                    'Standard': "",
+                    'Warm': "lighting: warm key light (3500K), soft fill",
+                    'Cool': "lighting: cool key light (6500K), crisp fill",
+                    'Dramatic': "lighting: dramatic high-contrast, strong key light with deep shadows, sharp rim light",
+                    'Soft': "lighting: soft, diffused, overcast day lighting, minimal shadows"
+                }
+            };
+            const collection = variations[type];
+            for (const [key, value] of Object.entries(collection)) {
+                list.push({ label: key, prompt: `${base} ${value}`.trim() });
+            }
+            return list;
+        };
+        
+        if(batchGenerateBtn) batchGenerateBtn.addEventListener('click', () => {
+            const base = promptOutput.value.trim();
+            if (!base) { alert("Please build a prompt first using the 'Build Prompt' button, or edit the main prompt manually."); return; }
+            const variationType = document.querySelector('input[name="batch-variation-type"]:checked').value;
+            const arr = generateBatchPrompts(base, variationType);
+            batchListContainer.innerHTML = "";
+            arr.forEach(item => {
+                const row = document.createElement('div');
+                row.className = "relative p-2 rounded-lg bg-slate-800 border border-slate-600";
+                const label = document.createElement('div');
+                label.className = "text-xs font-semibold text-slate-400 mb-1";
+                label.textContent = item.label;
+                const textarea = document.createElement('textarea');
+                textarea.className = "w-full text-xs bg-transparent outline-none resize-y";
+                textarea.rows = 3;
+                textarea.value = item.prompt;
+                const btn = document.createElement('button');
+                btn.className = "absolute top-2 right-2 bg-slate-600 hover:bg-slate-500 text-white text-xs px-2 py-1 rounded flex items-center gap-1";
+                const copyIconHTML = `<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
+                const btnText = document.createElement('span');
+                btnText.textContent = "Copy";
+                btn.innerHTML = copyIconHTML;
+                btn.appendChild(btnText);
+                btn.addEventListener('click', () => {
+                    textarea.select();
+                    document.execCommand('copy');
+                    btnText.textContent = "Copied!";
+                    setTimeout(() => { btnText.textContent = "Copy"; }, 1500);
+                });
+                row.appendChild(label); row.appendChild(textarea); row.appendChild(btn);
+                batchListContainer.appendChild(row);
+            });
+            window._nb_batch = arr;
+        });
+
+        if(batchDownloadBtn) batchDownloadBtn.addEventListener('click', () => {
+            const arr = window._nb_batch || [];
+            if (!arr.length) { alert("Please create variations first using the 'Create Variations' button."); return; }
+            const textContent = arr.map(item => `--- ${item.label} ---\n${item.prompt}`).join("\n\n");
+            const blob = new Blob([textContent], { type: "text/plain" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = "batch_prompts.txt"; a.click();
+            setTimeout(() => { URL.revokeObjectURL(url); }, 1000);
+        });
+
+        // --- License ID Logic ---
+        (function(){
+            try {
+                const KEY = 'nb_license_id'; let id = localStorage.getItem(KEY);
+                if (!id) { const rand = (n) => Math.floor(Math.random() * n).toString(16).padStart(4, '0').toUpperCase(); const y = new Date().getFullYear(); id = `NB-${y}-${rand(0x10000)}-${rand(0x10000)}`; localStorage.setItem(KEY, id); }
+                window.nbLicenseId = id;
+                window.nbUpdateLicenseIds = function() { document.querySelectorAll('.license-id').forEach(el => { el.textContent = window.nbLicenseId; }); };
+                window.nbUpdateLicenseIds();
+            } catch (e) {}
+        })();
+
+        // --- Consent Modal Logic ---
+        (function(){
+            const overlay = document.getElementById('consent-overlay'); const agreeBtn = document.getElementById('consent-agree'); const disagreeBtn = document.getElementById('consent-disagree');
+            const show = () => { if(overlay) overlay.classList.add('show'); document.body.style.overflow = 'hidden'; };
+            const hide = () => { if(overlay) overlay.classList.remove('show'); document.body.style.overflow = ''; };
+            show(); if(window.nbUpdateLicenseIds) window.nbUpdateLicenseIds();
+            if(agreeBtn) agreeBtn.addEventListener('click', hide);
+            if(disagreeBtn) disagreeBtn.addEventListener('click', () => { window.close(); if (history.length > 1) { history.back(); } else { location.replace('https://note.com/munou_ac'); } });
+        })();
+
+        // --- Initial Load & Setup ---
+        const cloneAndPrefixIds = (sourceNode, prefix) => {
+            const clone = sourceNode.cloneNode(true);
+            clone.id = prefix + (clone.id || '');
+            clone.querySelectorAll('[id]').forEach(el => el.id = prefix + el.id);
+            clone.querySelectorAll('[name]').forEach(el => el.name = prefix + el.name);
+            clone.querySelectorAll('label[for]').forEach(el => el.htmlFor = prefix + el.htmlFor);
+            return clone;
+        }
+
+        const standardDisplayBase = document.getElementById('display-base-section');
+        const threeViewDisplayBaseClone = cloneAndPrefixIds(standardDisplayBase, 'three-view-');
+        threeViewDisplayBaseContainer.appendChild(threeViewDisplayBaseClone);
+
+        createAspectRatioButtons();
+        updateBackgroundPrompt();
+        updateAcrylicStandBackgroundPrompt();
+        updateDisplayBaseUI();
+        updateThreeViewDisplayBaseUI();
+        setupThreeViewListeners();
+        
+        const initialExtendedType = document.querySelector('input[name="extended-mode-type"]:checked');
+        if (initialExtendedType) {
+            const selectedValue = initialExtendedType.value;
+            threeViewContainer.classList.toggle('hidden', selectedValue !== 'three-view');
+            lineArtContainer.classList.toggle('hidden', selectedValue !== 'line-art');
+            acrylicStandContainer.classList.toggle('hidden', selectedValue !== 'acrylic-stand');
+        }
+    });
+</script>
+</body>
+</html>
